@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "gateway"
+version = "0.1.0"
+description = "Gateway service bridging frontend requests to backend microservices."
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "api", from = "src" },
+    { include = "application", from = "src" },
+    { include = "domain", from = "src" },
+    { include = "infrastructure", from = "src" },
+]
+include = ["src/server.py", "src/__main__.py"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "0.115.4"
+uvicorn = { version = "0.30.6", extras = ["standard"] }
+structlog = "24.1.0"
+pydantic-settings = "2.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "7.4.4"
+pytest-asyncio = "0.23.6"
+
+[build-system]
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+gateway = "app`:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+

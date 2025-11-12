@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "jessica-hit-backend"
+version = "0.1.0"
+description = "Monorepo workspace for backend services and packages."
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.11"
+gateway = { path = "services/gateway", develop = true }
