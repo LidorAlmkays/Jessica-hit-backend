@@ -14,6 +14,8 @@ class GatewaySettings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
     log_level: str = "info"
+    service_name: str = "Gateway Service"
+    service_version: str = "0.1.0"
 
     model_config = SettingsConfigDict(
         env_prefix="gateway_",

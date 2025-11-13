@@ -1,28 +1,15 @@
-class GatewayService:
-    def __init__(self) -> None:
-        from config import load_gateway_settings
-
-        self.settings = load_gateway_settings()
-        self.api_factory = ...
-        self.application_factory = ...
-        self.infrastructure_factory = ...
-
-    def start(self) -> None:
-        resolved_host = self.settings.host
-        resolved_port = self.settings.port
-
-        print(f"Starting gateway service on {resolved_host}:{resolved_port}")
+from app import App
 
 
-def serve() -> None:
-    """Backward compatible alias for launching the service."""
-    service = GatewayService()
+def main() -> None:
+    """
+    Entry point for launching the gateway service.
+
+    Server configuration (host, port, reload, etc.) will be supplied in future revisions.
+    """
+    service = App()
     service.start()
 
 
-
-
-
-
-
-
+if __name__ == "__main__":
+    main()

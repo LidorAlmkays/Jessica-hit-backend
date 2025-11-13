@@ -1,28 +1,12 @@
-"""
-Factory for constructing application-layer services and orchestrators.
-
-Populate `build_application_services` with the mapping of use-case names to concrete handlers once they exist.
-"""
-
-from collections.abc import Mapping
-from typing import Any
-
-import structlog
-
-logger = structlog.get_logger(__name__)
+from application.adapters.user_service import UserService
+from application.user_service_without_encryption import UserServiceWithoutEncryption
+from services.gateway.src.config import GatewaySettings
 
 
-def build_application_services(*, dependencies: Mapping[str, Any] | None = None) -> Mapping[str, Any]:
-    """
-    Create and return the application-layer service registry.
-
-    Parameters
-    ----------
-    dependencies:
-        External resources (repositories, gateways, etc.) produced by the infrastructure layer.
-    """
-    logger.info("gateway.application.factory.build.start")
-    services: dict[str, Any] = {}
-    logger.info("gateway.application.factory.build.complete", service_count=len(services))
-    return services
+class ApplicationFactory:
+    def __init__(self,*,settings: GatewaySettings) -> None:
+        self._settings = settings
+    def get_user_service() -> UserService:
+        """Create the default user service implementation."""
+        return UserServiceWithoutEncryption()
 

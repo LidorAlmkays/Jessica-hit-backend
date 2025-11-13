@@ -1,25 +1,17 @@
-"""
-API factory module.
+from collections.abc import Mapping
+from typing import Any, Protocol
 
-Use this module to compose transport adapters (HTTP, WebSocket, etc.) once their implementations exist.
-"""
-
-from typing import Protocol
-
-
-class RouterFactory(Protocol):
-    """Defines contract for creating transport-specific routers."""
-
-    def build(self) -> object:  # pragma: no cover - placeholder signature
-        """Construct and return router instance."""
-        raise NotImplementedError
+from api.http1_1.server import Http1Server
+from application.adapters.user_service import UserService
+from config import GatewaySettings
 
 
-def create_http_api() -> RouterFactory | None:
-    """
-    Placeholder HTTP API factory.
+class ApiFactory:
+    """Factory responsible for composing available transport adapters."""
 
-    Replace return value with actual router factory implementation.
-    """
-    return None
+    def __init__(self, *, settings: GatewaySettings) -> None:
+        self._settings = settings
+
+    def create_http_server(self, *, user_service: UserService) -> Http1Server:
+        return Http1Server(settings=self._settings, user_service=user_service)
 
