@@ -8,4 +8,4 @@ packages = []
 
 [tool.poetry.dependencies]
 python = "^3.11"
-gateway = { path = "services/gateway", develop = true }
+auth = { path = "services/auth", develop = true }

@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "gateway"
+name = "auth"
 version = "0.1.0"
-description = "Gateway service bridging frontend requests to backend microservices."
-authors = ["Your Name <you@example.com>"]
+description = "Authentication service responsible for identity and session management."
+authors = ["Auth Team <auth@example.com>"]
 readme = "README.md"
 packages = [
     { include = "api", from = "src" },
